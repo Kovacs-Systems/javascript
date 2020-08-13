@@ -4001,4 +4001,105 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 We encourage you to fork this guide and change the rules to fit your team’s style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
 
+## Commas
+
+  <a name="commas--dangling"></a><a name="19.2"></a>
+  - [20.2](#commas--dangling) Additional trailing comma: **Nope.** eslint: [`no-comma-dangle`](https://eslint.org/docs/rules/no-comma-dangle.html)
+
+    > Why? Commas normally indicate something will come after it. A "cleaner" diff by one line isn't worth it. Commas also cannot appear after rest elements
+
+    ```diff
+    // bad - git diff with trailing comma
+    const hero = {
+         firstName: 'Florence',
+         lastName: 'Nightingale',
+    +    inventorOf: ['coxcomb chart', 'modern nursing'],
+    };
+
+    // good - git diff without trailing comma
+    const hero = {
+         firstName: 'Florence',
+    -    lastName: 'Nightingale'
+    +    lastName: 'Nightingale',
+    +    inventorOf: ['coxcomb chart', 'modern nursing']
+    };
+
+    ```
+
+    ```javascript
+    // bad
+    const hero = {
+      firstName: 'Dana',
+      lastName: 'Scully',
+    };
+
+    const heroes = [
+      'Batman',
+      'Superman',
+    ];
+
+    // good
+    const hero = {
+      firstName: 'Dana',
+      lastName: 'Scully'
+    };
+
+    const heroes = [
+      'Batman',
+      'Superman'
+    ];
+
+    // bad
+    function createHero(
+      firstName,
+      lastName,
+      inventorOf,
+    ) {
+      // does nothing
+    }
+
+    // good
+    function createHero(
+      firstName,
+      lastName,
+      inventorOf
+    ) {
+      // does nothing
+    }
+
+    // good (note that a comma must not appear after a "rest" element)
+    function createHero(
+      firstName,
+      lastName,
+      inventorOf,
+      ...heroArgs
+    ) {
+      // does nothing
+    }
+
+    // bad
+    createHero(
+      firstName,
+      lastName,
+      inventorOf,
+    );
+
+    // good
+    createHero(
+      firstName,
+      lastName,
+      inventorOf
+    );
+
+    // good (note that a comma must not appear after a "rest" element)
+    createHero(
+      firstName,
+      lastName,
+      inventorOf,
+      ...heroArgs
+    );
+    ```
+
+**[⬆ back to top](#table-of-contents)**
+
 # };
